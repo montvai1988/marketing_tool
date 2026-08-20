@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: prospect-hub-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: prospect
+      POSTGRES_PASSWORD: change-this-local-password
+      POSTGRES_DB: prospect_hub
+    ports:
+      - "5432:5432"
+    volumes:
+      - prospect_hub_postgres:/var/lib/postgresql/data
+
+volumes:
+  prospect_hub_postgres:

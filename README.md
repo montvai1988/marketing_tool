@@ -2,26 +2,25 @@
 
 Egy belső, magyar nyelvű marketing-felderítő és outreach alkalmazás. A rendszer kategóriánként felderíti a megadott forrásoldalakon szereplő vállalkozásokat, nyilvános oldalakról kiolvassa a vállalkozás nevét, forrás URL-jét és e-mail címét, majd személyre szabott e-mail vázlatokat és felülvizsgált kampányokat kezel.
 
-> **Hordozhatóság:** ez a kódprojekt nem igényel platform-specifikus futtatókörnyezetet. Szabványos React/Vite frontendből, Express/tRPC Node backendből, Drizzle ORM-ből és menedzselt MySQL-kompatibilis adatbázisból áll. Vercelre szerveroldali függvényként telepíthető.
+> **Hordozhatóság:** ez a kódprojekt nem igényel platform-specifikus futtatókörnyezetet. Szabványos React/Vite frontendből, Express/tRPC Node backendből, Drizzle ORM-ből és PostgreSQL adatbázisból áll. Vercelre szerveroldali függvényként telepíthető.
 
 | Rész | Technológia | Független külső szolgáltatás |
 | --- | --- | --- |
 | Felület | React, Vite, TypeScript, Tailwind | Nincs |
 | API | Express, tRPC, Vercel Function | Nincs |
 | Bejelentkezés | Belső felhasználónév/jelszó, aláírt HTTP-only süti | Nincs |
-| Adatbázis | Drizzle ORM, MySQL-kompatibilis adatbázis | TiDB Cloud, PlanetScale, vagy saját MySQL |
+| Adatbázis | Drizzle ORM, PostgreSQL | Neon, Supabase, Railway, vagy saját PostgreSQL |
 | Keresés | Google Custom Search JSON API | Google Cloud + Programmable Search Engine |
 | E-mail | Resend REST API | Resend |
 | AI vázlat | OpenAI-kompatibilis Chat Completions API | OpenAI, OpenRouter, Groq vagy más kompatibilis szolgáltató |
 
 ## Helyi futtatás
 
-Node.js 20+ és pnpm szükséges. Másold a `docs/environment-variables.md` táblázata alapján a változókat egy helyi `.env` fájlba, majd futtasd a következő parancsokat:
+Node.js 20+ és pnpm szükséges. Helyi PostgreSQL indításhoz és a Vercel/Neon beállításhoz lásd a [`docs/postgresql-setup.md`](docs/postgresql-setup.md) fájlt. Másold a `docs/environment-variables.md` táblázata alapján a változókat egy helyi `.env` fájlba, majd futtasd a következő parancsokat:
 
 ```bash
 pnpm install
-pnpm drizzle-kit generate
-pnpm drizzle-kit migrate
+pnpm db:migrate
 pnpm dev
 ```
 
@@ -57,7 +56,7 @@ pnpm test
 pnpm build
 ```
 
-A `pnpm build` hordozható Node szerver buildet is készít, a `pnpm build:vercel` pedig kizárólag a Vercel által kiszolgált Vite frontend buildet állítja elő.
+A `pnpm build` hordozható Node szerver buildet is készít, a `pnpm build:vercel` pedig kizárólag a Vercel által kiszolgált Vite frontend buildet állítja elő. A PostgreSQL migrációk alkalmazásához használd a `pnpm db:migrate` parancsot.
 
 ## Hivatkozások
 

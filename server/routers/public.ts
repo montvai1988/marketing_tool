@@ -29,7 +29,10 @@ export const publicRouter = router({
         await db
           .insert(optOuts)
           .values({ ownerId, email, reason: "unsubscribed" })
-          .onDuplicateKeyUpdate({ set: { reason: "unsubscribed" } });
+          .onConflictDoUpdate({
+            target: [optOuts.ownerId, optOuts.email],
+            set: { reason: "unsubscribed" },
+          });
 
         await db
           .update(prospects)

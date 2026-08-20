@@ -4,7 +4,7 @@ Az alkalmazás egy szabványos Node.js/Vite projekt. Az alábbi értékeket a he
 
 | Változó | Kötelező | Rendeltetés |
 | --- | --- | --- |
-| `DATABASE_URL` | Igen | Vercelből elérhető, menedzselt MySQL-kompatibilis adatbázis kapcsolati címe. |
+| `DATABASE_URL` | Igen | PostgreSQL kapcsolati URL, helyben vagy Vercelről elérhető adatbázishoz. |
 | `APP_USERNAME` | Igen | Az egyetlen belső admin felhasználónév. |
 | `APP_PASSWORD` | Igen | Hosszú, egyedi belépési jelszó. |
 | `SESSION_SECRET` | Igen | Legalább 32 karakteres véletlen érték a bejelentkezési süti aláírásához. |
@@ -23,4 +23,3 @@ Az alkalmazás egy szabványos Node.js/Vite projekt. Az alábbi értékeket a he
 | `LLM_MODEL` | Nem | Az LLM modell neve; alapértelmezés: `gpt-4o-mini`. |
 
 > A Vite biztonsági modellje miatt csak `VITE_` előtagú változók kerülnek a böngészőbe. Ebben a projektben **egyik titok sem** használ `VITE_` előtagot, ezért az adatbázis-, e-mail-, Google- és LLM-kulcsok csak a szerveren érhetők el.
-

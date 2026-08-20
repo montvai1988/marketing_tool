@@ -38,3 +38,10 @@
 - [x] Add a per-recipient preview showing the final subject, body, signature, and unsubscribe footer before sending.
 - [x] Extend Vitest coverage to the campaign eligibility and suppression decision logic.
 - [x] Verify the mobile-width layout of the dashboard screens.
+- [x] Audit the MySQL-specific schema, database helper, driver, and migration artifacts for PostgreSQL conversion.
+- [x] Confirm the PostgreSQL hosting, local-development, and existing-data migration approach.
+- [x] Convert the application codebase to PostgreSQL and validate types, tests, builds, and migration integrity.
+- [x] Replace all MySQL-specific dependencies and generated migration artifacts with PostgreSQL equivalents.
+- [x] Add PostgreSQL local development configuration and Vercel-ready connection guidance.
+- [ ] Push the completed PostgreSQL migration to the GitHub repository and verify the commit.
+- [ ] Owner action: provision a PostgreSQL database and apply `pnpm db:migrate` to validate the live connection and schema application.

@@ -91,15 +91,22 @@ export async function saveDiscoveredProspects(
       category: row.category,
     };
 
-    const result = await db
-      .insert(prospects)
-      .values(values)
-      .onDuplicateKeyUpdate({ set: { sourceUrl: values.sourceUrl, name: values.name } });
+    const [existing] = await db
+      .select({ id: prospects.id })
+      .from(prospects)
+      .where(and(eq(prospects.ownerId, ownerId), eq(prospects.email, email)))
+      .limit(1);
 
-    // affectedRows === 1 means a new row, 2 means an existing row was updated.
-    const affected = (result as unknown as { affectedRows?: number }).affectedRows ?? 1;
-    if (affected === 1) inserted += 1;
-    else skipped += 1;
+    if (existing) {
+      await db
+        .update(prospects)
+        .set({ sourceUrl: values.sourceUrl, name: values.name, updatedAt: new Date() })
+        .where(eq(prospects.id, existing.id));
+      skipped += 1;
+    } else {
+      await db.insert(prospects).values(values);
+      inserted += 1;
+    }
   }
 
   return { inserted, skipped };
@@ -130,7 +137,7 @@ export async function addOptOut(
   await db
     .insert(optOuts)
     .values({ ownerId, email: normalized, reason })
-    .onDuplicateKeyUpdate({ set: { reason } });
+    .onConflictDoUpdate({ target: [optOuts.ownerId, optOuts.email], set: { reason } });
 
   await db
     .update(prospects)
@@ -190,7 +197,7 @@ export async function updateTemplate(
   const db = await requireDb();
   await db
     .update(templates)
-    .set(input)
+    .set({ ...input, updatedAt: new Date() })
     .where(and(eq(templates.ownerId, ownerId), eq(templates.id, id)));
 }
 
@@ -369,14 +376,22 @@ export async function addSourceSites(
   let skipped = 0;
 
   for (const row of rows) {
-    const result = await db
-      .insert(sourceSites)
-      .values({ ownerId, label: row.label, domain: row.domain, category: row.category })
-      .onDuplicateKeyUpdate({ set: { label: row.label, category: row.category, active: true } });
+    const [existing] = await db
+      .select({ id: sourceSites.id })
+      .from(sourceSites)
+      .where(and(eq(sourceSites.ownerId, ownerId), eq(sourceSites.domain, row.domain)))
+      .limit(1);
 
-    const affected = (result as unknown as { affectedRows?: number }).affectedRows ?? 1;
-    if (affected === 1) inserted += 1;
-    else skipped += 1;
+    if (existing) {
+      await db
+        .update(sourceSites)
+        .set({ label: row.label, category: row.category, active: true })
+        .where(eq(sourceSites.id, existing.id));
+      skipped += 1;
+    } else {
+      await db.insert(sourceSites).values({ ownerId, label: row.label, domain: row.domain, category: row.category });
+      inserted += 1;
+    }
   }
 
   return { inserted, skipped };
