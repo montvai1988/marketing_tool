@@ -43,5 +43,5 @@
 - [x] Convert the application codebase to PostgreSQL and validate types, tests, builds, and migration integrity.
 - [x] Replace all MySQL-specific dependencies and generated migration artifacts with PostgreSQL equivalents.
 - [x] Add PostgreSQL local development configuration and Vercel-ready connection guidance.
-- [ ] Push the completed PostgreSQL migration to the GitHub repository and verify the commit.
+- [x] Push the completed PostgreSQL migration to the GitHub repository and verify the commit.
 - [ ] Owner action: provision a PostgreSQL database and apply `pnpm db:migrate` to validate the live connection and schema application.
