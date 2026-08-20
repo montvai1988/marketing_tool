@@ -20,7 +20,7 @@
 - [x] Collect the Google search credentials, Resend API key, and verified sender address from the owner.
 - [ ] Owner action: enable Custom Search API and allow it on the API key (currently API_KEY_SERVICE_BLOCKED).
 - [ ] Owner action: set OUTREACH_FROM_EMAIL to an address on the verified contact.eventcraft.hu domain.
-- [ ] Synchronize the complete project to https://github.com/montvai1988/marketing_tool.git and verify the pushed commit.
+- [x] Synchronize the complete project to https://github.com/montvai1988/marketing_tool.git and verify the pushed commit.
 - [x] Audit and remove Manus-specific runtime modules, environment variables, and client assets.
 - [x] Replace Manus OAuth with portable authentication or a clearly documented external authentication option.
 - [x] Replace Manus-owned database runtime and storage assumptions with a Vercel-compatible managed database setup.
