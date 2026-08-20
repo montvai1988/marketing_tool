@@ -45,3 +45,4 @@
 - [x] Add PostgreSQL local development configuration and Vercel-ready connection guidance.
 - [x] Push the completed PostgreSQL migration to the GitHub repository and verify the commit.
 - [ ] Owner action: provision a PostgreSQL database and apply `pnpm db:migrate` to validate the live connection and schema application.
+- [x] Create a step-by-step Hungarian local PostgreSQL testing guide for the owner.

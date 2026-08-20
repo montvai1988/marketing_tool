@@ -16,7 +16,7 @@ Egy belső, magyar nyelvű marketing-felderítő és outreach alkalmazás. A ren
 
 ## Helyi futtatás
 
-Node.js 20+ és pnpm szükséges. Helyi PostgreSQL indításhoz és a Vercel/Neon beállításhoz lásd a [`docs/postgresql-setup.md`](docs/postgresql-setup.md) fájlt. Másold a `docs/environment-variables.md` táblázata alapján a változókat egy helyi `.env` fájlba, majd futtasd a következő parancsokat:
+Node.js 20+ és pnpm szükséges. Helyi PostgreSQL indításhoz és a Vercel/Neon beállításhoz lásd a [`docs/postgresql-setup.md`](docs/postgresql-setup.md) fájlt. A teljes, kezdőtől a funkcionális tesztig vezető helyi folyamatot a [`docs/helyi-teszteles.md`](docs/helyi-teszteles.md) tartalmazza. Másold a `docs/environment-variables.md` táblázata alapján a változókat egy helyi `.env` fájlba, majd futtasd a következő parancsokat:
 
 ```bash
 pnpm install
