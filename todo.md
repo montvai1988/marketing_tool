@@ -1,0 +1,40 @@
+# Project TODO
+
+- [x] Create a premium Hungarian-language outreach dashboard shell with responsive navigation and refined visual hierarchy.
+- [x] Define database tables for prospects, tags, campaign templates, outreach messages, and opt-out records.
+- [x] Implement category-restricted prospect discovery for Accommodations, Hotels, Food Trucks, and Musicians.
+- [x] Integrate Google Custom Search through a secure server-side configuration, retaining each result's source URL.
+- [x] Implement a controlled public-page contact extractor that stores only business name, source URL, and email address.
+- [x] Build prospect list management with search, category filters, tag filtering, multi-select, tagging, and deletion.
+- [x] Build reusable email-template management with subject line and message body fields.
+- [x] Add per-prospect LLM draft generation using business name and category.
+- [x] Add a review-first campaign composer with selected-recipient summary and preview.
+- [x] Integrate Resend as the outbound email provider with a server-side API key and verified sender address.
+- [x] Implement per-contact send status tracking (queued, sent, failed, skipped) and a send-history log.
+- [x] Use the built-in owner notification channel for campaign completion and failure alerts to the project owner only.
+- [x] Implement opt-out capture and automatic exclusion from future recipient selections and sends.
+- [x] Add compliance-oriented safeguards: source provenance, manual approval, recipient limits, and visible unsubscribe handling.
+- [x] Write and run Vitest coverage for the primary data and eligibility workflows.
+- [x] Verify the responsive UI and key user journeys in the browser.
+- [x] Document required Google Custom Search configuration and the supported email-delivery boundary.
+- [x] Collect the Google search credentials, Resend API key, and verified sender address from the owner.
+- [ ] Owner action: enable Custom Search API and allow it on the API key (currently API_KEY_SERVICE_BLOCKED).
+- [ ] Owner action: set OUTREACH_FROM_EMAIL to an address on the verified contact.eventcraft.hu domain.
+- [ ] Synchronize the complete project to https://github.com/montvai1988/marketing_tool.git and verify the pushed commit.
+- [x] Audit and remove Manus-specific runtime modules, environment variables, and client assets.
+- [x] Replace Manus OAuth with portable authentication or a clearly documented external authentication option.
+- [x] Replace Manus-owned database runtime and storage assumptions with a Vercel-compatible managed database setup.
+- [x] Replace built-in LLM and owner-notification dependencies with provider-neutral integrations.
+- [x] Add Vercel deployment configuration, portable environment-variable templates, and production run scripts.
+- [x] Verify a standalone production build and update the GitHub repository with the portable codebase.
+- [x] Replace the previous owner-notification dependency with optional Resend owner alerts, configured through OUTREACH_ALERT_EMAIL.
+- [x] Adapt discovery to the new Google rule: new search engines are limited to up to 50 designated domains instead of whole-web search.
+- [x] Add a "Forrásoldalak" page where the owner manually registers platforms and sites used as search sources.
+- [x] Store source sites in the database with category assignment, active/inactive state, and a 50-domain guard.
+- [x] Restrict discovery queries to the selected source sites and show which sites were queried.
+- [x] Add a copyable domain list for the Google control panel "Sites to search" configuration.
+- [x] Surface a clear in-app explanation of the domain-limited search behaviour.
+- [x] Cover source-site normalization and query building with Vitest.
+- [x] Add a per-recipient preview showing the final subject, body, signature, and unsubscribe footer before sending.
+- [x] Extend Vitest coverage to the campaign eligibility and suppression decision logic.
+- [x] Verify the mobile-width layout of the dashboard screens.
